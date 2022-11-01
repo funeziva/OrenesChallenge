@@ -1,11 +1,7 @@
 ﻿using Domain.Customers;
 using Domain.Vehicles;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Domain.Orders
 {
@@ -24,18 +20,16 @@ namespace Domain.Orders
         public Guid CustomerId { get; set; }
         public Guid? VehicleId { get; set; }
         [Required]
-        public string Ubication { get; set; }
-        [Required]
         public OrderStatus Status { get; set; }
         public Customer Customer { get; set; }
         public Vehicle Vehicle { get; set; }
 
-        public Order(Guid customerId, Guid? vehicleId, string Ubication)
+        public Order(Guid customerId, Guid? vehicleId, OrderStatus status)
         {
             this.Id = Guid.NewGuid();
             this.CustomerId = customerId;
             this.VehicleId = vehicleId;
-            this.Ubication = Ubication;
+            this.Status = status;
         }
 
     }

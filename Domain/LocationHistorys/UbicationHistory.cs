@@ -1,26 +1,21 @@
-﻿using Domain.Orders;
-using System;
-using System.Collections.Generic;
+﻿using Domain.Vehicles;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.LocationHistorys
 {
     public class UbicationHistory
     {
         [Required]
-        public Guid OrderId { get; set; }
+        public Guid VehicleId { get; set; }
         [Required]
         public string Ubication { get; set; }
         [Required]
         public DateTime CreatedDate { get; set; }
-        public Order Order { get; set; }
+        public Vehicle Vehicle { get; set; }
 
-        public UbicationHistory(Guid orderId, string ubication)
+        public UbicationHistory(Guid vehicleId, string ubication)
         {
-            this.OrderId = orderId;
+            this.VehicleId = vehicleId;
             this.Ubication = ubication;
             this.CreatedDate = DateTime.Now;
         }

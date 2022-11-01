@@ -4,6 +4,7 @@ using Domain.LocationHistorys;
 using Domain.Orders;
 using Domain.Vehicles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure
 {
@@ -26,7 +27,11 @@ namespace Infrastructure
                 .HasIndex(n => n.TelephoneNumber).IsUnique();
 
             modelBuilder.Entity<UbicationHistory>()
-                .HasKey(n => new { n.OrderId, n.Ubication, n.CreatedDate });
+                .HasKey(n => new { n.VehicleId, n.Ubication, n.CreatedDate });
+
+            modelBuilder.Entity<Order>()
+                .Property(n => n.Status)
+                .HasConversion(new EnumToStringConverter<OrderStatus>());
 
         }
 
