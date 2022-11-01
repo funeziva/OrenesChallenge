@@ -19,5 +19,16 @@ namespace Domain.Drivers
             this.Name = name;
             this.TelephoneNumber = telephoneNumber;
         }
+
+        public static Driver Create(string name, int telephoneNumber)
+        {
+            return new Driver(name, telephoneNumber);
+        }
+
+        public void Update(string name, int telephoneNumber)
+        {
+            this.Name = name;
+            this.TelephoneNumber = telephoneNumber;
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Domain.Customers;
 using Domain.Drivers;
-using Domain.LocationHistorys;
 using Domain.Orders;
+using Domain.UbicationHistories;
 using Domain.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;

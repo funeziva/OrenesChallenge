@@ -24,10 +24,21 @@ namespace Domain.Orders
         public Customer Customer { get; set; }
         public Vehicle Vehicle { get; set; }
 
-        public Order(Guid customerId, Guid? vehicleId, OrderStatus status)
+        public Order(Guid customerId)
         {
             this.Id = Guid.NewGuid();
             this.CustomerId = customerId;
+            this.VehicleId = null;
+            this.Status = OrderStatus.PendingVehicle;
+        }
+
+        public static Order Create(Guid customerId)
+        {
+            return new Order(customerId);
+        }
+
+        public void Update(Guid? vehicleId, OrderStatus status)
+        {
             this.VehicleId = vehicleId;
             this.Status = status;
         }

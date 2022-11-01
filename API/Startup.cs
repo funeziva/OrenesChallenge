@@ -1,4 +1,4 @@
-﻿using API.Utils;
+﻿using API.ServiceDependencies;
 using API.Utils.JWT;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace API
 {
@@ -48,8 +49,11 @@ namespace API
                 opciones.AddPolicy("Admin_ProjectManager_Developer", policy => policy.RequireClaim("rol", "Admin", "Project Manager", "Desarrollador"));
             });
 
-            services.AddTransient<HelperJWT>();
-            services.AddControllers();
+            
+            services.AddServicesApplicationInfrastructure();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())); ;
 
             services.AddSwaggerGen(c =>
             {
@@ -76,7 +80,7 @@ namespace API
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+                {
                 {
                     new OpenApiSecurityScheme
                     {
@@ -103,6 +107,10 @@ namespace API
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

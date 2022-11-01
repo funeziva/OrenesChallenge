@@ -23,5 +23,17 @@ namespace Domain.Customers
             this.TelephoneNumber = telephoneNumber;
             this.Address = address;
         }
+
+        public static Customer Create(string name, int telephoneNumber, string address)
+        {
+            return new Customer(name, telephoneNumber, address);
+        }
+
+        public void Update(string name, int telephoneNumber, string address)
+        {
+            this.Name = name;
+            this.TelephoneNumber = telephoneNumber;
+            this.Address = address;
+        }
     }
 }
