@@ -1,12 +1,13 @@
 ﻿using API.Utils.ErrorMessage;
 using Application.Orders.Search;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Orders.Search
 {
 
-    [AllowAnonymous]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Customer")]
     [ApiController]
     [Route("api/orders")]
     public class OrderSearchController : ControllerBase
@@ -25,7 +26,7 @@ namespace API.Controllers.Orders.Search
         {
             List<OrderSearcherResponse> orders =
                 await searcher.ExecuteAsync(new OrderSearcherRequest(request.Id, request.VehicleId, request.CustomerId, request.Status));
-            return orders.ConvertAll(order => new OrderSearchResponse(order.Id, order.VehicleId, order.CustomerId, order.Status, order.Ubication));
+            return orders.ConvertAll(order => new OrderSearchResponse(order.Id, order.VehicleId, order.CustomerId, order.Status));
         }
     }
 }

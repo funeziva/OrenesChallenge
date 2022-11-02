@@ -16,14 +16,13 @@ namespace API.Utils
             this._appSettings = appSettings.Value;
         }
 
-        public string CreateToken(Guid id, string name, string role)
+        public string CreateToken(string name, string role)
         {
             byte[] key = Encoding.ASCII.GetBytes(this._appSettings.Secret);
             ClaimsIdentity claims = new(new[]
             {
-            new Claim("id", id.ToString()),
-            new Claim("nombre", name),
-            new Claim("rol", role)
+            new Claim("name", name),
+            new Claim("role", role)
         });
 
             SecurityTokenDescriptor tokenDescription = new()

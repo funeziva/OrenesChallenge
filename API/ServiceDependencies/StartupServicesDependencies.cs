@@ -15,6 +15,7 @@ using Application.Orders.Find;
 using Application.Orders.Search;
 using Application.Orders.Update;
 using Application.UbicationHistories.Search;
+using Application.Users;
 using Application.Vehicles.Create;
 using Application.Vehicles.Delete;
 using Application.Vehicles.Find;
@@ -65,6 +66,8 @@ namespace API.ServiceDependencies
             services.AddTransient<OrderCreator>();
 
             services.AddTransient<UbicationHistorySearcher>();
+            
+            services.AddTransient<UserFinder>();
 
             services.AddTransient<IVehicleRepository, EFVehicleRepository>();
             services.AddTransient<IDriverRepository, EFDriverRepository>();

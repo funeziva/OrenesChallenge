@@ -1,12 +1,13 @@
 ﻿using API.Utils.ErrorMessage;
 using Application.Vehicles.Delete;
 using Domain.Vehicles.Exceptions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Vehicles.Delete
 {
-    [AllowAnonymous]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Driver")]
     [ApiController]
     [Route("api/vehicles")]
     public class VehicleDeleteController : ControllerBase

@@ -44,9 +44,8 @@ namespace API
 
             services.AddAuthorization(opciones =>
             {
-                opciones.AddPolicy("EsAdmin", policy => policy.RequireClaim("rol", "Admin"));
-                opciones.AddPolicy("Admin_ProjectManager", policy => policy.RequireClaim("rol", "Admin", "Project Manager"));
-                opciones.AddPolicy("Admin_ProjectManager_Developer", policy => policy.RequireClaim("rol", "Admin", "Project Manager", "Desarrollador"));
+                opciones.AddPolicy("Driver", policy => policy.RequireClaim("role", "Driver"));
+                opciones.AddPolicy("Customer", policy => policy.RequireClaim("role", "Customer"));
             });
 
             
