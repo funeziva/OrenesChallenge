@@ -38,7 +38,7 @@ namespace API
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
                    ValidateIssuer = false,
                    ValidateAudience = false,
-                   ClockSkew = TimeSpan.Zero
+                   ClockSkew = TimeSpan.Zero,
                };
            });
 
@@ -105,6 +105,7 @@ namespace API
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

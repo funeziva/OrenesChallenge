@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Vehicles.Delete
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Driver")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Driver")]
+    [AllowAnonymous]
     [ApiController]
     [Route("api/vehicles")]
     public class VehicleDeleteController : ControllerBase

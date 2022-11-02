@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers.Orders.Search
 {
 
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Customer")]
+    [AllowAnonymous]
     [ApiController]
     [Route("api/orders")]
     public class OrderSearchController : ControllerBase

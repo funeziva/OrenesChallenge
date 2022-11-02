@@ -2,13 +2,12 @@
 using Application.Vehicles.Create;
 using Domain.Drivers.Exceptions;
 using Domain.Vehicles.Exceptions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Vehicles.Create
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Driver")]
+    [AllowAnonymous]
     [ApiController]
     [Route("api/vehicles")]
     public class VehicleCreateController : ControllerBase
